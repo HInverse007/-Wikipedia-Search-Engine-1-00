@@ -80,7 +80,7 @@ class XMLWikiHandler(xml.sax.ContentHandler):
 			self.Text = ""
 
 
-	def endElement(self,tag):
+	def endElement(self,tag): # This function is remove the end words and for stemming and all.
 		global tempIndexFile
 
 		if(self.CurrentData == "id" and XMLWikiHandler.CurrentlyProcessing == 1 and self.isIdDone == 1):
@@ -153,7 +153,7 @@ class XMLWikiHandler(xml.sax.ContentHandler):
 			self.Text += content
 
 
-	def enterToDict(self,content,tag,ID):
+	def enterToDict(self,content,tag,ID): # This function is define to make the dict like here a word is map to unique id for the page and the count of it in body, title etc.
 		global dumpTokensCount
 		if content:
 			for data in content:
@@ -172,7 +172,7 @@ class XMLWikiHandler(xml.sax.ContentHandler):
 						self.dictIndex[stemmedword][str(ID)][tag] +=1
 
 
-	def writeFile(self,indexFileNumber):
+	def writeFile(self,indexFileNumber): 		# This is to write in the files and all.
 		indexFile = "./index/"+str(indexFileNumber)+".txt"
 		print ("Write index into ",indexFile)
 		f = open(indexFile,"w")
@@ -223,8 +223,8 @@ def deleteTempFile():
 		pass
 
 
-def mergeFiles(numberOfFiles):
-	while(checkFile(2)):
+def mergeFiles(numberOfFiles): 		#This function is used for merging the files so that we can make our dataset in a dic order and we are merging the files so that our query
+	while(checkFile(2)):		# search result can come in less time or less complexity.
 		iterate = 1
 		newFileCount = 1
 		while(iterate<numberOfFiles):
@@ -281,7 +281,7 @@ def mergeFiles(numberOfFiles):
 		#print("nc",newFileCount)
 		deleteTempFile()
 
-def divideFiles():
+def divideFiles():		# This function is used for diving the files after all the processing done.
 	chunks = documentLimit
 	current = 2
 	lineCount = 0
