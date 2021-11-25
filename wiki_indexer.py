@@ -312,7 +312,7 @@ if(__name__ == "__main__"):
 	start = time.time()
 	stopwordDictForm()
 	f = []
-	directoryPath = "/home/salayjain/wiki/"
+	directoryPath = "/home/harshsharma/wiki/"
 	for (dirpath, dirnames, filenames) in walk(directoryPath):
 		f.extend(filenames)
 	filePath = []
